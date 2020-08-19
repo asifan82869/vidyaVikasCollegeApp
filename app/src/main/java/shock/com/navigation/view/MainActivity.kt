@@ -20,11 +20,11 @@ class MainActivity : AppCompatActivity() {
     var backPress: Long = 0
     var addToBackPress = 0
     var toolbar: Toolbar? = null
-    val home = HomeFragment()
-    val about = AboutFragment()
-    val contact = ContactFragment()
-    val gallery = GalleryFragment()
-    val setting = SettingMenuFragment()
+    private val home = HomeFragment()
+    private val about = AboutFragment()
+    private val contact = ContactFragment()
+    private val gallery = GalleryFragment()
+    private val setting = SettingMenuFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,8 +94,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.share_app -> {
                     val sharingIntent: Intent = Intent(Intent.ACTION_SEND)
                     sharingIntent.type = "text/plain"
-                    sharingIntent.putExtra( Intent.EXTRA_TEXT, "https://")
-                    startActivity(Intent.createChooser(sharingIntent, "Share using"))
+                    sharingIntent.putExtra( Intent.EXTRA_TEXT, "https://drive.google.com/file/d/1aEDdqZpCxVi_6nVqyQWgrSuuZgt_6gIV/view?usp=sharing")
+                    startActivity(sharingIntent)
                 }
             }
             true
