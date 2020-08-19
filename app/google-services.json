@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "951121627783",
+    "firebase_url": "https://vikascollege-8a02e.firebaseio.com",
+    "project_id": "vikascollege-8a02e",
+    "storage_bucket": "vikascollege-8a02e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951121627783:android:aa2d27e950080ea8f94622",
+        "android_client_info": {
+          "package_name": "shock.com.navigation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951121627783-j1rdco9dd8i4bl4b6nnqjigscke0ikkm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "shock.com.navigation",
+            "certificate_hash": "f46bb86d28f3a987a66f290295971632db82bc57"
+          }
+        },
+        {
+          "client_id": "951121627783-ivh86btgdrernpl4qh3n6ihvbr7jcqgn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuISULZyimYt00CtbeuDDFxD2hJfpueGo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951121627783-ivh86btgdrernpl4qh3n6ihvbr7jcqgn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

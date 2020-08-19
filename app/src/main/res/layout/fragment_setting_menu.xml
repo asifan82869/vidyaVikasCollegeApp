@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.SettingMenuFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:id="@+id/uploadPhotos"
+        android:background="@drawable/edit_shape"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUploadPhotos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Upload Photos"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintStart_toStartOf="@+id/uploadPhotos"
+            app:layout_constraintTop_toTopOf="@+id/uploadPhotos" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_baseline_navigate_next_24"
+            app:layout_constraintEnd_toEndOf="@+id/uploadPhotos"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tvUploadPhotos"
+            app:layout_constraintTop_toTopOf="@+id/uploadPhotos" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:id="@+id/deletePhotos"
+        android:background="@drawable/edit_shape"
+        app:layout_constraintTop_toBottomOf="@+id/uploadPhotos"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDeletePhotos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Delete Photos"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintStart_toStartOf="@+id/deletePhotos"
+            app:layout_constraintTop_toTopOf="@+id/deletePhotos" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_baseline_navigate_next_24"
+            app:layout_constraintEnd_toEndOf="@+id/deletePhotos"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tvDeletePhotos"
+            app:layout_constraintTop_toTopOf="@+id/deletePhotos" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

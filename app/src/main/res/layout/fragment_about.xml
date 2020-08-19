@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.AboutFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/scrollViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/aboutInfo"
+            app:layout_constraintTop_toTopOf="@+id/scrollViewContainer"
+            app:layout_constraintStart_toStartOf="@+id/scrollViewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/aboutText"
+                android:paddingTop="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/headStyle"
+                android:text="About Us" />
+
+            <ImageView
+                android:id="@+id/aboutImage"
+                android:paddingTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/aboutText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/logo"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_text"
+                app:layout_constraintTop_toBottomOf="@+id/aboutImage"
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/containStyle"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/founder"
+            android:paddingTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_30sdp"
+            app:layout_constraintTop_toBottomOf="@+id/aboutInfo"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:paddingTop="@dimen/_10sdp"
+                android:id="@+id/founderImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/founder1"
+                app:layout_constraintEnd_toEndOf="@id/founder"
+                app:layout_constraintTop_toTopOf="@id/founder"
+                app:layout_constraintStart_toStartOf="@id/founder"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/founder1"
+                android:paddingTop="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Late Dr.Datta Samant"
+                android:textSize="@dimen/_20sdp"
+                android:gravity="center_horizontal"
+                app:layout_constraintEnd_toEndOf="@id/founderImage"
+                app:layout_constraintTop_toBottomOf="@id/founderImage"
+                app:layout_constraintStart_toStartOf="@id/founderImage"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:paddingTop="@dimen/_10sdp"
+                android:id="@+id/founderImage2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/founder2"
+                app:layout_constraintEnd_toEndOf="@id/founder"
+                app:layout_constraintTop_toBottomOf="@id/founder1"
+                app:layout_constraintStart_toStartOf="@id/founder"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/founder2"
+                android:paddingTop="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Late Dr.W.S.Matkar"
+                android:textSize="@dimen/_20sdp"
+                android:gravity="center_horizontal"
+                app:layout_constraintEnd_toEndOf="@id/founderImage2"
+                app:layout_constraintTop_toBottomOf="@id/founderImage2"
+                app:layout_constraintStart_toStartOf="@id/founderImage2"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
