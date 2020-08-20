@@ -22,6 +22,7 @@ class SettingMenuFragment : Fragment(R.layout.fragment_setting_menu) {
         var nAct: MainActivity = activity as MainActivity
         nAct.supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentLayout, OptionSettingFragment(data))
+            nAct.addToBackPress += 1
             addToBackStack(null)
             commit()
         }

@@ -48,6 +48,7 @@ class OptionSettingFragment(private val option: String) : Fragment() {
                 addToBackStack(null)
                 commit()
             }
+            nAct.addToBackPress += 1
         }
         if (option == "Delete"){
             nAct.supportFragmentManager.beginTransaction().apply {
@@ -55,6 +56,7 @@ class OptionSettingFragment(private val option: String) : Fragment() {
                 addToBackStack(null)
                 commit()
             }
+            nAct.addToBackPress += 1
         }
 
     }

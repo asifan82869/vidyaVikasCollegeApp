@@ -37,8 +37,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCollege"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="103dp" />
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
