@@ -1,12 +1,21 @@
 package shock.com.navigation.fragments
 
+import android.app.Dialog
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -14,10 +23,12 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_image_college.errorDatabase
 import kotlinx.android.synthetic.main.fragment_image_college.progressBar
 import kotlinx.android.synthetic.main.fragment_library_image.*
+import kotlinx.android.synthetic.main.show_image.*
 import shock.com.navigation.R
 import shock.com.navigation.adapter.ImageAdapter
 import shock.com.navigation.data.Upload
 import shock.com.navigation.view.MainActivity
+import java.net.URL
 
 
 class LibraryImageFragment : Fragment() {
@@ -55,7 +66,19 @@ class LibraryImageFragment : Fragment() {
                 }
 
                 if (mUpload.size != 0) {
-                    adapter = ImageAdapter(nAct.contaxt, mUpload)
+                    adapter = ImageAdapter(nAct.contaxt, mUpload, object: ImageAdapter.ClickListener{
+                        override fun onClick(url: String) {
+                            val builder = Dialog(nAct)
+                            builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                            builder.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                            builder.setContentView(layoutInflater.inflate(R.layout.show_image, null))
+                            Glide.with(nAct)
+                                .load(url)
+                                .placeholder(R.drawable.logo)
+                                .into(builder.showImage)
+                            builder.show()
+                        }
+                    })
                     recyclerViewLibrary.adapter = adapter
                     recyclerViewLibrary.layoutManager = GridLayoutManager(nAct.contaxt, 2)
                     (recyclerViewLibrary.adapter as ImageAdapter).notifyDataSetChanged()

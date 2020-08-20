@@ -2,6 +2,7 @@ package shock.com.navigation.adapter
 
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +14,9 @@ import kotlinx.android.synthetic.main.image_item.*
 import shock.com.navigation.R
 import shock.com.navigation.data.Upload
 import java.io.FileNotFoundException
+import java.net.URL
 
-class ImageAdapter(private val mContext: Context, var mUpload: ArrayList<Upload>) :
+class ImageAdapter(private val mContext: Context, var mUpload: ArrayList<Upload>, var listener: ClickListener) :
     RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,6 +34,12 @@ class ImageAdapter(private val mContext: Context, var mUpload: ArrayList<Upload>
             .placeholder(R.drawable.logo)
             .centerCrop()
             .into(holder.imageItem)
+
+        holder.itemView.setOnClickListener {
+            if (imagename != null) {
+                listener.onClick(imagename)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -39,4 +47,8 @@ class ImageAdapter(private val mContext: Context, var mUpload: ArrayList<Upload>
     }
 
     inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer
+
+    interface ClickListener{
+        fun onClick(url: String)
+    }
 }

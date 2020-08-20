@@ -1,20 +1,31 @@
 package shock.com.navigation.fragments
 
+import android.app.Dialog
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_image_college.*
+import kotlinx.android.synthetic.main.show_image.*
 import shock.com.navigation.R
 import shock.com.navigation.adapter.ImageAdapter
 import shock.com.navigation.data.Upload
 import shock.com.navigation.view.MainActivity
+import java.net.URL
 
 class CollegeImageFragment: Fragment() {
 
@@ -52,7 +63,19 @@ class CollegeImageFragment: Fragment() {
                 }
 
                 if (mUpload.size != 0) {
-                    adapter = ImageAdapter(nAct.contaxt, mUpload)
+                    adapter = ImageAdapter(nAct.contaxt, mUpload, object: ImageAdapter.ClickListener{
+                        override fun onClick(url: String) {
+                            val builder = Dialog(nAct)
+                            builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                            builder.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                            builder.setContentView(layoutInflater.inflate(R.layout.show_image, null))
+                            Glide.with(nAct)
+                                .load(url)
+                                .placeholder(R.drawable.logo)
+                                .into(builder.showImage)
+                            builder.show()
+                        }
+                    })
                     recyclerViewCollege.adapter = adapter
                     recyclerViewCollege.layoutManager = GridLayoutManager(nAct.contaxt, 2)
                     (recyclerViewCollege.adapter as ImageAdapter).notifyDataSetChanged()

@@ -19,9 +19,9 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
         tabLayout.setupWithViewPager(viewPager)
     }
 
-    fun setUpViewPager(viewpager: ViewPager){
+    private fun setUpViewPager(viewpager: ViewPager){
 
-        var nAct: MainActivity = activity as MainActivity
+        val nAct: MainActivity = activity as MainActivity
         val tabAdapter = TabAdapter(nAct.supportFragmentManager)
         tabAdapter.addFragment(CollegeImageFragment(), "COLLEGE")
         tabAdapter.addFragment(EventImageFragment(), "EVENT")
