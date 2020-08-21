@@ -66,6 +66,7 @@ class DeleteImageFragment(val data: String) : Fragment() {
             })
         recyclerViewDelete.adapter = adapter
         recyclerViewDelete.layoutManager = GridLayoutManager(nAct.contaxt, 2)
+        progressBar.visibility = View.GONE
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -82,7 +83,6 @@ class DeleteImageFragment(val data: String) : Fragment() {
                     errorDatabase.text = "No Image Found"
                     deleteButton.visibility = View.GONE
                 }
-                progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -96,6 +96,7 @@ class DeleteImageFragment(val data: String) : Fragment() {
 
 
     private fun delete() {
+        var yes = false
         val nAct: MainActivity = activity as MainActivity
         val images = (recyclerViewDelete.adapter as DeleteimageAdapter).isSelectedImage()
         val keys = (recyclerViewDelete.adapter as DeleteimageAdapter).deleteImage()
@@ -105,22 +106,20 @@ class DeleteImageFragment(val data: String) : Fragment() {
                     val key = keys[i]
                     val url = image.getImageName()
                     val imageref = mStoragRef.child("$data/$url")
-
                     imageref.delete()
-                        .addOnSuccessListener {
-                            val deleteKey = mDataBaseRef.child("$data/$key")
-                            deleteKey.removeValue()
-                            Toast.makeText(nAct, "Image delete Successfully...", Toast.LENGTH_LONG).show()
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(nAct, "Image delete failed...", Toast.LENGTH_LONG).show()
-                        }
-
+                    val deleteKey = mDataBaseRef.child("$data/$key")
+                    deleteKey.removeValue()
+                    yes = true
                 }
             }
-
         }else{
             Toast.makeText(nAct, "image and key are empty", Toast.LENGTH_LONG).show()
+        }
+
+        if (yes){
+            Toast.makeText(nAct, "Image delete Successfully...", Toast.LENGTH_LONG).show()
+        }else{
+            Toast.makeText(nAct, "Image delete failed...", Toast.LENGTH_LONG).show()
         }
     }
 

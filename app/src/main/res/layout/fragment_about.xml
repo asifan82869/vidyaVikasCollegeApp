@@ -41,10 +41,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:src="@drawable/logo"/>
 
-            <TextView
+            <WebView
+                android:layout_margin="@dimen/_10sdp"
+                android:id="@+id/aboutCont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/about_text"
                 app:layout_constraintTop_toBottomOf="@+id/aboutImage"
                 app:layout_constraintStart_toStartOf="parent"
                 style="@style/containStyle"/>

@@ -1,14 +1,18 @@
 package shock.com.navigation.fragments
 
-import android.R
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_home.*
+import shock.com.navigation.R
 import shock.com.navigation.adapter.SlidAdapter
 import shock.com.navigation.view.MainActivity
+import java.util.*
 
 
 class HomeFragment : Fragment() {
@@ -27,12 +31,58 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         slidAdapter()
+        homeText.isVerticalScrollBarEnabled = false
+        homeText.loadData(getString(R.string.home_text), "text/html; charset=utf-8", "utf-8")
+
+        val instaUrl = "https://www.instagram.com/nss_unit_2019_20/"
+        val facebookUrl = "https://www.facebook.com/VikasCollegeNSSUnit/"
+
+        insta.setOnClickListener {
+            socialWeb(instaUrl)
+        }
+        facebook.setOnClickListener {
+            socialWeb(facebookUrl)
+        }
+
     }
 
     private fun slidAdapter(){
-        var nAct: MainActivity = activity as MainActivity
+        val nAct: MainActivity = activity as MainActivity
         val context = nAct.contaxt
         val adapter = SlidAdapter(context)
         viewpager.adapter = adapter
+        indicator.setViewPager(viewpager)
+
+
+        /*val handler = Handler()
+        val timer = Timer()
+
+        var viewPagerId:Int
+
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                handler.post {
+                    if(viewpager?.currentItem != null){
+                        viewPagerId = viewpager.currentItem
+                        if(viewPagerId == 3){
+                            viewPagerId = 0
+                            viewpager.setCurrentItem(viewPagerId, true)
+                        }else{
+                            viewPagerId++
+                            viewpager.setCurrentItem(viewPagerId, true)
+                        }
+                    }else{
+                        viewPagerId=0
+                    }
+                }
+            }
+        }, 4000, 4000)*/
     }
+
+    private fun socialWeb(url: String){
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
+    }
+
 }

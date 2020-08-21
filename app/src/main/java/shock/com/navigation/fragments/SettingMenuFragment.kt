@@ -10,10 +10,10 @@ import shock.com.navigation.view.MainActivity
 class SettingMenuFragment : Fragment(R.layout.fragment_setting_menu) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        uploadPhotos.setOnClickListener {
+        tvUploadPhotos.setOnClickListener {
             nextFragment("Upload")
         }
-        deletePhotos.setOnClickListener {
+        tvDeletePhotos.setOnClickListener {
             nextFragment("Delete")
         }
     }

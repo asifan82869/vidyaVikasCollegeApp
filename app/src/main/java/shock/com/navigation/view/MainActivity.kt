@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.share_app -> {
                     val sharingIntent: Intent = Intent(Intent.ACTION_SEND)
                     sharingIntent.type = "text/plain"
-                    sharingIntent.putExtra( Intent.EXTRA_TEXT, "https://drive.google.com/file/d/1h-UZsTYpeOsJs8mAaLrbhxu1r61EQ7uA/view?usp=sharing")
+                    sharingIntent.putExtra( Intent.EXTRA_TEXT, "https://bit.ly/2FHsTQ9")
                     startActivity(sharingIntent)
                 }
             }
@@ -176,7 +176,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-       if(addToBackPress == 1){
+       if(addToBackPress == 1 || addToBackPress == 0){
            val build = AlertDialog.Builder(this)
            build.setTitle("Really Exit?")
            build.setMessage("Are you sure you want to exit?")

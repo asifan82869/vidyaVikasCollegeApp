@@ -62,29 +62,28 @@ class EventImageFragment: Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 mUpload.clear()
 
-                adapter = ImageAdapter(nAct.contaxt, mUpload, object: ImageAdapter.ClickListener{
-                    override fun onClick(url: String) {
-                        val builder = Dialog(nAct)
-                        builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                        builder.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-                        builder.setContentView(layoutInflater.inflate(R.layout.show_image, null))
-                        Glide.with(nAct)
-                            .load(url)
-                            .placeholder(R.drawable.logo)
-                            .into(builder.showImage)
-                        builder.show()
-                    }
-                })
-                recyclerViewEvent.adapter = adapter
-                recyclerViewEvent.layoutManager = GridLayoutManager(nAct.contaxt, 2)
-
                 for (postSnapshot: DataSnapshot in dataSnapshot.children){
                     var upload: Upload? = postSnapshot.getValue(Upload::class.java)
                     mUpload.add(upload!!)
                 }
 
                 if (mUpload.size != 0) {
+                    adapter = ImageAdapter(nAct.contaxt, mUpload, object: ImageAdapter.ClickListener{
+                        override fun onClick(url: String) {
+                            val builder = Dialog(nAct)
+                            builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                            builder.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+                            builder.setContentView(layoutInflater.inflate(R.layout.show_image, null))
+                            Glide.with(nAct)
+                                .load(url)
+                                .placeholder(R.drawable.logo)
+                                .into(builder.showImage)
+                            builder.show()
+                        }
+                    })
+                    recyclerViewEvent.adapter = adapter
+                    recyclerViewEvent.layoutManager = GridLayoutManager(nAct.contaxt, 2)
                     (recyclerViewEvent.adapter as ImageAdapter).notifyDataSetChanged()
                 }else{
                     errorDatabase.visibility = View.VISIBLE

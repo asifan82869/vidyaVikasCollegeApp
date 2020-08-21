@@ -27,7 +27,6 @@ import shock.com.navigation.view.MainActivity
 
 class UploadImageFragment(private val data: String) : Fragment() {
 
-
     var refStorage = FirebaseStorage.getInstance().getReference(data)
     private var imageUri:Uri? = null
 

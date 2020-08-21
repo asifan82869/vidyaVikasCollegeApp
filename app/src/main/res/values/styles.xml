@@ -29,4 +29,22 @@
         <item name="android:textColorSecondary">#FFFFB88C</item>
     </style>
 
+    <style name="settingStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/_50sdp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/_20sdp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/_18sdp</item>
+        <item name="backgroundColor">@android:color/white</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/_2sdp</item>
+        <item name="android:layout_marginStart">@dimen/_10sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_10sdp</item>
+        <item name="android:background">?android:attr/listDivider</item>
+    </style>
+
 </resources>
