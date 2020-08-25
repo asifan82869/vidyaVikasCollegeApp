@@ -1,8 +1,6 @@
 package shock.com.navigation.view
 
-import android.content.DialogInterface
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -13,16 +11,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseNetworkException
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.login.*
-import kotlinx.android.synthetic.main.toolbar.*
 import shock.com.navigation.R
 import shock.com.navigation.fragments.*
 
@@ -31,10 +24,10 @@ class MainActivity : AppCompatActivity() {
     var addToBackPress = 0
     var toolbar: Toolbar? = null
     var mAuth = FirebaseAuth.getInstance()
-    var user = mAuth.currentUser
-    var hideSettingItem:MenuItem? = null
-    var hideLogoutItem:MenuItem? = null
-    var menu:Menu? = null
+    private var user = mAuth.currentUser
+    private var hideSettingItem:MenuItem? = null
+    private var hideLogoutItem:MenuItem? = null
+    private var menu:Menu? = null
 
     private val home = HomeFragment()
     private val about = AboutFragment()
