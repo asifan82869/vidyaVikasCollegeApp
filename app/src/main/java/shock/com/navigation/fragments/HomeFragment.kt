@@ -1,9 +1,7 @@
 package shock.com.navigation.fragments
 
-import android.content.Intent
-import android.net.Uri
+import android.graphics.Paint
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +10,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import shock.com.navigation.R
 import shock.com.navigation.adapter.SlidAdapter
 import shock.com.navigation.view.MainActivity
-import java.util.*
 
 
 class HomeFragment : Fragment() {
@@ -31,18 +28,30 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         slidAdapter()
+        val nAct: MainActivity = activity as MainActivity
         homeText.isVerticalScrollBarEnabled = false
         homeText.loadData(getString(R.string.home_text), "text/html; charset=utf-8", "utf-8")
 
-        val instaUrl = "https://www.instagram.com/nss_unit_2019_20/"
-        val facebookUrl = "https://www.facebook.com/VikasCollegeNSSUnit/"
+        library.paintFlags = library.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        nss.paintFlags = nss.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
-        insta.setOnClickListener {
-            socialWeb(instaUrl)
+        nss.setOnClickListener{
+            nAct.supportActionBar?.title = "NSS"
+            nAct.supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentLayout, NSSFragment())
+                commit()
+            }
         }
-        facebook.setOnClickListener {
-            socialWeb(facebookUrl)
+
+        library.setOnClickListener{
+            nAct.supportActionBar?.title = "Library"
+            nAct.supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentLayout, LibraryFragment())
+                commit()
+            }
         }
+
+
 
     }
 
@@ -79,10 +88,5 @@ class HomeFragment : Fragment() {
         }, 4000, 4000)*/
     }
 
-    private fun socialWeb(url: String){
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(url)
-        startActivity(intent)
-    }
 
 }

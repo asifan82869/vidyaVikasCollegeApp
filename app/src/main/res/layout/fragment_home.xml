@@ -56,38 +56,30 @@
             app:layout_constraintTop_toBottomOf="@+id/home_head"
             android:layout_marginTop="@dimen/_5sdp"/>
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginTop="@dimen/_20sdp"
-            android:id="@+id/homeIcon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/nss"
+            android:layout_margin="@dimen/_20sdp"
             app:layout_constraintTop_toBottomOf="@+id/homeText"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="information about NSS"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="italic|bold"
+            android:textColor="#2196F3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-            <ImageView
-                android:id="@+id/insta"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                app:layout_constraintTop_toTopOf="@+id/homeIcon"
-                android:src="@drawable/instagram"
-                app:layout_constraintStart_toStartOf="@id/homeIcon"
-                app:layout_constraintBottom_toBottomOf="@+id/homeIcon"
-                app:layout_constraintEnd_toStartOf="@+id/facebook"
-                android:scaleType="fitXY"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/library"
+            android:layout_margin="@dimen/_20sdp"
+            app:layout_constraintTop_toBottomOf="@+id/nss"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="italic"
+            android:textColor="#2196F3"
+            android:text="information about Library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-            <ImageView
-                android:id="@+id/facebook"
-                android:scaleType="fitXY"
-                android:src="@drawable/facebook"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                app:layout_constraintTop_toTopOf="@+id/homeIcon"
-                app:layout_constraintStart_toEndOf="@id/insta"
-                app:layout_constraintEnd_toEndOf="@id/homeIcon"
-                app:layout_constraintBottom_toBottomOf="@id/homeIcon"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

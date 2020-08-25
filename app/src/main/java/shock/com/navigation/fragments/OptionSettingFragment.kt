@@ -38,6 +38,9 @@ class OptionSettingFragment(private val option: String) : Fragment() {
         libraryUploadPhotos.setOnClickListener {
             fragmentReplace("LibraryImage")
         }
+        nssUploadPhotos.setOnClickListener {
+            fragmentReplace("NSSImage")
+        }
     }
 
     private fun fragmentReplace(data:String){

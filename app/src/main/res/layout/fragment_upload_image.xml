@@ -10,13 +10,26 @@
         android:id="@+id/btnChooseImage"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
         android:layout_marginTop="@dimen/_20sdp"
         android:text="Choose Image"
+        app:layout_constraintEnd_toStartOf="@+id/btnUploadImage"
         android:background="@drawable/toolbar_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnUploadImage"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/toolbar_bg"
+        android:text="Upload Image"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnChooseImage"
+        tools:layout_editor_absoluteX="140dp"
+        tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/UploadImage"
@@ -50,19 +63,6 @@
         app:layout_constraintTop_toBottomOf="@+id/UploadImage"
         tools:visibility="visible" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnUploadImage"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/toolbar_bg"
-        android:text="Upload Image"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/progressbar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="140dp"
-        tools:visibility="visible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

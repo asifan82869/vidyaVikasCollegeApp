@@ -123,6 +123,33 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:id="@+id/nssUploadPhotos"
+            android:background="@drawable/edit_shape"
+            app:layout_constraintTop_toBottomOf="@+id/libraryUploadPhotos"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNssUploadPhotos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="NSS"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_20sdp"
+                app:layout_constraintStart_toStartOf="@+id/nssUploadPhotos"
+                app:layout_constraintTop_toTopOf="@+id/nssUploadPhotos" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

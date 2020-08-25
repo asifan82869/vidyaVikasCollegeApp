@@ -63,11 +63,120 @@
         ]]>
     </string>
 
+    <string name="nss_text">
+        <![CDATA[
+        <html>
+         <head></head>
+         <body style="text-align:justify;color:black;">
+         <p>
+            The <b> National Service Scheme (NSS)</b> is an Indian government-sponsored public service program <b>conducted by the Ministry of Youth Affairs and Sports
+            of the Government of India</b>. Popularly known as <b>NSS</b>.
+         </p>
+         <p>
+            At Vikas College of Arts, Science and Commerce NSS started in 2000
+         </p>
+         </body>
+         </html>
+        ]]>
+    </string>
+
+    <string name="library_text">
+        <![CDATA[
+             <html>
+         <head></head>
+         <body style="text-align:justify;color:black;">
+         <p>
+          Books have always been a source of inspiration to many and so do
+          the libraries that equip them. Libraries play a very important role
+          in the development of the society. There is a give and take
+          relationship between the libraries and the society. What it gives to
+          the society gets back manifold and this process continues hence a
+          library is said to be a growing as well as a developing organism.
+          In this information age, libraries have a challenging role to play.
+          Thus It has been upgraded from a traditional library to an automated
+          library, further to electronic and now to digital library.
+          This changing role of library has been very well acknowledged by
+          the library of Ramniranjan Jhunjhunwala College. We have an excellent
+          library. It has a treasure trove of information and over a decade
+          now the library has come a long way in terms of its resources as
+          well as the services that it provides to its user.
+        </p>
+        <p>
+          Books play a very important role in everyone’s life, especially
+          in a students’ life. They are our best friends because they inspire
+          us to do great things in life and overcome our failures. We learn a
+          lot of things from them. Books are our best companions as they
+          provide us knowledge unconditionally without asking anything in return.
+        </p>
+        <p>
+          Friendship with good books makes you a good person. In case when
+          there is no one for your help, only these will become your
+          companion in life. Books will always be there for you in your
+          adverse times and bring positive value to our life.
+        </p>
+        </body>
+         </html>
+        ]]>
+    </string>
+
+    <string name="library_book_detail">
+        <![CDATA[
+        <html>
+         <head></head>
+         <body style="text-align:justify;color:black;">
+         <h3>LIBRARY COLLECTIONS</h3>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>Total Number of Books</td>
+              <td>45019</td>
+            </tr>
+            <tr>
+              <td>Book Bank</td>
+              <td>16434</td>
+            </tr>
+            <tr>
+              <td>Journals & Periodicals</td>
+              <td>37</td>
+            </tr>
+            <tr>
+              <td>Bounded Book of Periodicals</td>
+              <td>281</td>
+            </tr>
+            <tr>
+              <td>CD/VCD/DVD</td>
+              <td>158</td>
+            </tr>
+            <tr>
+              <td>PohotoFrames of India Laureater</td>
+              <td>135</td>
+            </tr>
+            <tr>
+              <td>Book for Competitive Examination</td>
+              <td>1300</td>
+            </tr>
+            <tr>
+              <td>Sitting Capability of the Library(Student)</td>
+              <td>135</td>
+            </tr>
+            <tr>
+              <td>Sitting Capability of the Library(Teacher)</td>
+              <td>10</td>
+            </tr>
+          </tbody>
+        </table>
+         </body>
+         </html>
+        ]]>
+    </string>
+
     <string name="telephone1">(022) - 25783540</string>
     <string name="telephone2">(022) - 25784267</string>
     <string name="email">info@vikascollege.org</string>
     <string name="website">http://www.vikascollege.org</string>
     <string name="address"> Kannamwar Nagar - 2, Vikhroli (East),
             Mumbai - 400 083,  Maharashtra, India.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

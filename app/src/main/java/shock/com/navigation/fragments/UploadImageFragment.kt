@@ -1,8 +1,10 @@
 package shock.com.navigation.fragments
 
+import android.Manifest
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.ConnectivityManager
 import android.net.Uri
@@ -14,6 +16,7 @@ import android.view.ViewGroup
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -27,6 +30,7 @@ import shock.com.navigation.view.MainActivity
 
 class UploadImageFragment(private val data: String) : Fragment() {
 
+    private val REQUEST_EXTERNAL_STORAGE = 100
     var refStorage = FirebaseStorage.getInstance().getReference(data)
     private var imageUri:Uri? = null
 
@@ -47,7 +51,7 @@ class UploadImageFragment(private val data: String) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnChooseImage.setOnClickListener {
-            chooseImage()
+            permission()
         }
         btnUploadImage.setOnClickListener {
             val nAct: MainActivity = activity as MainActivity
@@ -60,6 +64,41 @@ class UploadImageFragment(private val data: String) : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    private fun permission(){
+        val nAct: MainActivity = activity as MainActivity
+        if (ActivityCompat.checkSelfPermission(nAct, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(nAct,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_EXTERNAL_STORAGE)
+            chooseImage()
+        } else {
+            chooseImage()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        val nAct: MainActivity = activity as MainActivity
+        when (requestCode) {
+            REQUEST_EXTERNAL_STORAGE -> {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.size > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    Toast.makeText(nAct,"Permission success", Toast.LENGTH_SHORT).show()
+                    chooseImage()
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(nAct,"Permission denied", Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
+        }
+    }
+
     private fun verifyAvailableNetwork():Boolean{
         val nAct: MainActivity = activity as MainActivity
         val connectivityManager=nAct.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -68,14 +107,14 @@ class UploadImageFragment(private val data: String) : Fragment() {
     }
 
     private fun getFileExtension(uri: Uri?): String? {
-        var nAct: MainActivity = activity as MainActivity
+        val nAct: MainActivity = activity as MainActivity
         val cR: ContentResolver = nAct.contentResolver
         val mime = MimeTypeMap.getSingleton()
         return mime.getExtensionFromMimeType(cR.getType(uri!!))
     }
 
     private fun uploadImageFile(){
-        var nAct: MainActivity = activity as MainActivity
+        val nAct: MainActivity = activity as MainActivity
         val mDatabase = FirebaseDatabase.getInstance().getReference(data);
         if (imageUri != null){
 
@@ -100,9 +139,13 @@ class UploadImageFragment(private val data: String) : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     private fun chooseImage(){
         val i = Intent(Intent.ACTION_GET_CONTENT)
         i.type = "image/*"
+        val mimeType = arrayOf("image/jpeg","image/jpg","image/png")
+        i.putExtra(Intent.EXTRA_MIME_TYPES, mimeType)
+        i.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         startActivityForResult(i,100)
     }
 

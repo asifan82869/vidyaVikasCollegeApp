@@ -16,8 +16,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.login.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -30,6 +32,10 @@ class MainActivity : AppCompatActivity() {
     var toolbar: Toolbar? = null
     var mAuth = FirebaseAuth.getInstance()
     var user = mAuth.currentUser
+    var hideSettingItem:MenuItem? = null
+    var hideLogoutItem:MenuItem? = null
+    var menu:Menu? = null
+
     private val home = HomeFragment()
     private val about = AboutFragment()
     private val contact = ContactFragment()
@@ -50,30 +56,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        if (user != null){
-            toolbar?.inflateMenu(R.menu.toolbar_menu)
+        if(user == null){
+            menuInflater.inflate(R.menu.toolbar_menu, menu)
         }
+        this.menu = menu
         return true
     }
 
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.logout ->{
-                val build = AlertDialog.Builder(this)
-                build.setTitle("LogOut")
-                build.setMessage("Are you sure you want to LogOut?")
-                build.setNegativeButton("No"){dialogInterface, which ->
-                    dialogInterface.cancel()
-                }
-                build.setPositiveButton("Yes"){dialogInterface, which ->
-                    mAuth.signOut()
-                    toolbar!!.menu.clear()
-                    user = null
-                    supportActionBar?.title = "Home"
-                    replaceFragment(home)
-                }
-                val alert = build.create()
-                alert.show()
+            R.id.login ->{
+                settingLog()
             }
         }
 
@@ -89,6 +84,12 @@ class MainActivity : AppCompatActivity() {
 
         val drawerLayout: DrawerLayout = findViewById<DrawerLayout>(R.id.drawer)
         val nav: NavigationView = findViewById<NavigationView>(R.id.navmenu)
+
+        val menuItem = nav.menu
+        hideSettingItem = menuItem.findItem((R.id.menu_setting))
+        hideLogoutItem = menuItem.findItem(R.id.menu_logout)
+        hideSettingItem!!.isVisible = user != null
+        hideLogoutItem!!.isVisible = user != null
 
         val toggle = ActionBarDrawerToggle(
             this,
@@ -125,7 +126,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_setting -> {
                     supportActionBar?.title = "Setting"
                     drawerLayout.closeDrawer(GravityCompat.START)
-                    settingLog()
+                    replaceFragment(setting)
                     addToBackPress += 1
                 }
                 R.id.share_app -> {
@@ -133,6 +134,26 @@ class MainActivity : AppCompatActivity() {
                     sharingIntent.type = "text/plain"
                     sharingIntent.putExtra( Intent.EXTRA_TEXT, "https://bit.ly/2FHsTQ9")
                     startActivity(sharingIntent)
+                }
+                R.id.menu_logout ->{
+                    val build = AlertDialog.Builder(this)
+                    build.setTitle("LogOut")
+                    build.setMessage("Are you sure you want to LogOut?")
+                    build.setNegativeButton("No"){dialogInterface, which ->
+                        dialogInterface.cancel()
+                    }
+                    build.setPositiveButton("Yes"){dialogInterface, which ->
+                        mAuth.signOut()
+                        toolbar?.menu?.clear()
+                        menuInflater.inflate(R.menu.toolbar_menu, menu)
+                        hideSettingItem!!.isVisible = false
+                        hideLogoutItem!!.isVisible = false
+                        user = null
+                        supportActionBar?.title = "Home"
+                        replaceFragment(home)
+                    }
+                    val alert = build.create()
+                    alert.show()
                 }
             }
             true
@@ -159,19 +180,29 @@ class MainActivity : AppCompatActivity() {
                     mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                         if (task.isSuccessful){
                             mAlert.dismiss()
-                            replaceFragment(setting)
+                            toolbar?.menu?.clear()
+                            hideSettingItem!!.isVisible = true
+                            hideLogoutItem!!.isVisible = true
                             user = mAuth.currentUser
-                            toolbar!!.inflateMenu(R.menu.toolbar_menu)
                         }else{
-                            Toast.makeText(this, "please enter a correct userName and Password", Toast.LENGTH_SHORT).show()
+                            try {
+                                throw task.exception!!
+                            }catch (e: FirebaseAuthInvalidCredentialsException){
+                                Toast.makeText(this, "please enter a correct userName and Password",
+                                    Toast.LENGTH_LONG).show()
+                            }catch (e: FirebaseNetworkException){
+                                Toast.makeText(this, "check your internet connection",
+                                    Toast.LENGTH_LONG).show()
+                            }
                         }
                     }
                 }else{
-                    Toast.makeText(this, "please enter userName and Password $user", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "please enter userName and Password", Toast.LENGTH_SHORT).show()
                 }
             }
         }else{
-            replaceFragment(setting)
+            hideSettingItem!!.isVisible = true
+            hideLogoutItem!!.isVisible = true
         }
     }
 
