@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.share_app -> {
                     val sharingIntent: Intent = Intent(Intent.ACTION_SEND)
                     sharingIntent.type = "text/plain"
-                    sharingIntent.putExtra( Intent.EXTRA_TEXT, "http://gg.gg/vikasApp")
+                    sharingIntent.putExtra( Intent.EXTRA_TEXT, "http://gg.gg/vikasAap")
                     startActivity(sharingIntent)
                 }
                 R.id.menu_logout ->{
