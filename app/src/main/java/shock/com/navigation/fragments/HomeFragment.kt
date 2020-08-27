@@ -29,6 +29,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         slidAdapter()
         val nAct: MainActivity = activity as MainActivity
+        nAct.supportActionBar?.title = "Home"
         homeText.isVerticalScrollBarEnabled = false
         homeText.loadData(getString(R.string.home_text), "text/html; charset=utf-8", "utf-8")
 
@@ -36,19 +37,17 @@ class HomeFragment : Fragment() {
         nss.paintFlags = nss.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
         nss.setOnClickListener{
-            nAct.supportActionBar?.title = "NSS"
-            nAct.supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fragmentLayout, NSSFragment())
-                commit()
-            }
+            nAct.supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentLayout, NSSFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
         }
 
         library.setOnClickListener{
-            nAct.supportActionBar?.title = "Library"
-            nAct.supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fragmentLayout, LibraryFragment())
-                commit()
-            }
+            nAct.supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentLayout, LibraryFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
         }
 
 

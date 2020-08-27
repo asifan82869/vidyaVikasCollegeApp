@@ -44,6 +44,10 @@ class DeleteImageFragment(val data: String) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val nAct: MainActivity = activity as MainActivity
+        nAct.supportActionBar?.title = "$data"
+
         progressBar.visibility = View.VISIBLE
         recycle()
 

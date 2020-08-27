@@ -45,6 +45,9 @@ class LibraryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val nAct: MainActivity = activity as MainActivity
+        nAct.supportActionBar?.title = "Library"
+
         libraryText.isVerticalScrollBarEnabled = false
         libraryText.loadData(getString(R.string.library_text), "text/html; charset=utf-8", "utf-8")
 

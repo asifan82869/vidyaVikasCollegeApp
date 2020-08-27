@@ -32,8 +32,11 @@ class ContactFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val nAct: MainActivity = activity as MainActivity
         super.onViewCreated(view, savedInstanceState)
+
+        val nAct: MainActivity = activity as MainActivity
+        nAct.supportActionBar?.title = "Contact Us"
+
         btnSubmit.setOnClickListener {
             if (verifyAvailableNetwork()){
                 toastInfo()

@@ -26,6 +26,14 @@ class OptionSettingFragment(private val option: String) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (option == "Upload"){
+            val nAct: MainActivity = activity as MainActivity
+            nAct.supportActionBar?.title = "Upload Photos"
+        }else{
+            val nAct: MainActivity = activity as MainActivity
+            nAct.supportActionBar?.title = "Delete Photos"
+        }
+
         collegeUploadPhotos.setOnClickListener {
             fragmentReplace("CollegeImage")
         }
@@ -51,7 +59,6 @@ class OptionSettingFragment(private val option: String) : Fragment() {
                 addToBackStack(null)
                 commit()
             }
-            nAct.addToBackPress += 1
         }
         if (option == "Delete"){
             nAct.supportFragmentManager.beginTransaction().apply {
@@ -59,7 +66,6 @@ class OptionSettingFragment(private val option: String) : Fragment() {
                 addToBackStack(null)
                 commit()
             }
-            nAct.addToBackPress += 1
         }
 
     }

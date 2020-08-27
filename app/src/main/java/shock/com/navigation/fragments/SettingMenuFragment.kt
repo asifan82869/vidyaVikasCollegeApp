@@ -10,6 +10,10 @@ import shock.com.navigation.view.MainActivity
 class SettingMenuFragment : Fragment(R.layout.fragment_setting_menu) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val nAct: MainActivity = activity as MainActivity
+        nAct.supportActionBar?.title = "Setting"
+
         tvUploadPhotos.setOnClickListener {
             nextFragment("Upload")
         }
@@ -19,10 +23,9 @@ class SettingMenuFragment : Fragment(R.layout.fragment_setting_menu) {
     }
 
     private fun nextFragment(data:String){
-        var nAct: MainActivity = activity as MainActivity
+        val nAct: MainActivity = activity as MainActivity
         nAct.supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentLayout, OptionSettingFragment(data))
-            nAct.addToBackPress += 1
             addToBackStack(null)
             commit()
         }

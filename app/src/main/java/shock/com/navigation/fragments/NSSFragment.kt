@@ -49,6 +49,10 @@ class NSSFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val nAct: MainActivity = activity as MainActivity
+        nAct.supportActionBar?.title = "NSS"
+
         nssText.isVerticalScrollBarEnabled = false
         nssText.loadData(getString(R.string.nss_text), "text/html; charset=utf-8", "utf-8")
 

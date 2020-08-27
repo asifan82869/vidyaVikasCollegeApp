@@ -14,6 +14,7 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var nAct: MainActivity = activity as MainActivity
+        nAct.supportActionBar?.title = "Gallery"
         val viewPager = nAct.findViewById<ViewPager>(R.id.tabLayoutViewPager) as ViewPager
         setUpViewPager(viewPager)
         tabLayout.setupWithViewPager(viewPager)

@@ -50,6 +50,9 @@ class UploadImageFragment(private val data: String) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val nAct: MainActivity = activity as MainActivity
+        nAct.supportActionBar?.title = "$data"
+
         btnChooseImage.setOnClickListener {
             permission()
         }

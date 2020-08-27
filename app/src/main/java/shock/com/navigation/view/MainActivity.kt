@@ -1,5 +1,6 @@
 package shock.com.navigation.view
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -21,7 +22,6 @@ import shock.com.navigation.fragments.*
 
 class MainActivity : AppCompatActivity() {
     val contaxt = this
-    var addToBackPress = 0
     var toolbar: Toolbar? = null
     var mAuth = FirebaseAuth.getInstance()
     private var user = mAuth.currentUser
@@ -97,35 +97,29 @@ class MainActivity : AppCompatActivity() {
         nav.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_home -> {
-                    supportActionBar?.title = "Home"
                     replaceFragment(home)
                     drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.menu_gallery -> {
-                    supportActionBar?.title = "Gallery"
                     replaceFragment(gallery)
                     drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.menu_about -> {
-                    supportActionBar?.title = "About Us"
                     replaceFragment(about)
                     drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.menu_contact -> {
-                    supportActionBar?.title = "Contact Us"
                     replaceFragment(contact)
                     drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.menu_setting -> {
-                    supportActionBar?.title = "Setting"
                     drawerLayout.closeDrawer(GravityCompat.START)
                     replaceFragment(setting)
-                    addToBackPress += 1
                 }
                 R.id.share_app -> {
                     val sharingIntent: Intent = Intent(Intent.ACTION_SEND)
                     sharingIntent.type = "text/plain"
-                    sharingIntent.putExtra( Intent.EXTRA_TEXT, "http://gg.gg/vikasAap")
+                    sharingIntent.putExtra( Intent.EXTRA_TEXT, "http://gg.gg/VidyaVikasApp")
                     startActivity(sharingIntent)
                 }
                 R.id.menu_logout ->{
@@ -154,10 +148,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun replaceFragment(fragment: Fragment){
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragmentLayout, fragment)
-            commit()
-        }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentLayout, fragment)
+            .addToBackStack(null)
+            .commitAllowingStateLoss()
     }
 
     private fun settingLog(){
@@ -167,6 +161,9 @@ class MainActivity : AppCompatActivity() {
             builder.setView(logInDialog).setTitle("LOGIN")
             val mAlert = builder.show()
             mAlert.login.setOnClickListener {
+                val progressDialog = ProgressDialog(this)
+                progressDialog.setMessage("Please wait for few second")
+                progressDialog.show()
                 val email = mAlert.userName.text.toString()
                 val pass = mAlert.password.text.toString()
                 if(email.isNotEmpty() && pass.isNotEmpty()){
@@ -177,19 +174,23 @@ class MainActivity : AppCompatActivity() {
                             hideSettingItem!!.isVisible = true
                             hideLogoutItem!!.isVisible = true
                             user = mAuth.currentUser
+                            progressDialog.dismiss()
                         }else{
                             try {
                                 throw task.exception!!
                             }catch (e: FirebaseAuthInvalidCredentialsException){
+                                progressDialog.dismiss()
                                 Toast.makeText(this, "please enter a correct userName and Password",
                                     Toast.LENGTH_LONG).show()
                             }catch (e: FirebaseNetworkException){
+                                progressDialog.dismiss()
                                 Toast.makeText(this, "check your internet connection",
                                     Toast.LENGTH_LONG).show()
                             }
                         }
                     }
                 }else{
+                    progressDialog.dismiss()
                     Toast.makeText(this, "please enter userName and Password", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -197,24 +198,5 @@ class MainActivity : AppCompatActivity() {
             hideSettingItem!!.isVisible = true
             hideLogoutItem!!.isVisible = true
         }
-    }
-
-    override fun onBackPressed() {
-       if(addToBackPress == 1 || addToBackPress == 0){
-           val build = AlertDialog.Builder(this)
-           build.setTitle("Really Exit?")
-           build.setMessage("Are you sure you want to exit?")
-           build.setNegativeButton("No"){dialogInterface, which ->
-               dialogInterface.cancel()
-           }
-           build.setPositiveButton("Yes"){dialogInterface, which ->
-               super.onBackPressed()
-           }
-           val alert = build.create()
-           alert.show()
-       }else{
-           addToBackPress -= 1
-           super.onBackPressed()
-       }
     }
 }
