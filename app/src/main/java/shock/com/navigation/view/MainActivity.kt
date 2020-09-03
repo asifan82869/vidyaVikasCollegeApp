@@ -3,7 +3,11 @@ package shock.com.navigation.view
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.os.Handler
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -23,6 +27,7 @@ import shock.com.navigation.fragments.*
 class MainActivity : AppCompatActivity() {
     val contaxt = this
     var toolbar: Toolbar? = null
+    var count = 0
     var mAuth = FirebaseAuth.getInstance()
     private var user = mAuth.currentUser
     private var hideSettingItem:MenuItem? = null
@@ -112,6 +117,10 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(contact)
                     drawerLayout.closeDrawer(GravityCompat.START)
                 }
+                R.id.menu_other -> {
+                    replaceFragment(OtherFragment())
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                }
                 R.id.menu_setting -> {
                     drawerLayout.closeDrawer(GravityCompat.START)
                     replaceFragment(setting)
@@ -147,7 +156,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment){
+    fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentLayout, fragment)
             .addToBackStack(null)
@@ -198,5 +207,24 @@ class MainActivity : AppCompatActivity() {
             hideSettingItem!!.isVisible = true
             hideLogoutItem!!.isVisible = true
         }
+    }
+
+    override fun onBackPressed() {
+        val fragment = supportFragmentManager.backStackEntryCount
+
+        if (fragment == 0) {
+            if (count == 1 ){
+                super.onBackPressed()
+
+            }else{
+                count += 1
+                Toast.makeText(this,"Press again for exist", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            supportFragmentManager.popBackStack()
+        }
+        Handler().postDelayed(Runnable {
+            count = 0
+        },5000)
     }
 }

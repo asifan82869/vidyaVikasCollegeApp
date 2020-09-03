@@ -11,7 +11,6 @@ import shock.com.navigation.R
 import shock.com.navigation.adapter.SlidAdapter
 import shock.com.navigation.view.MainActivity
 
-
 class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,25 +31,6 @@ class HomeFragment : Fragment() {
         nAct.supportActionBar?.title = "Home"
         homeText.isVerticalScrollBarEnabled = false
         homeText.loadData(getString(R.string.home_text), "text/html; charset=utf-8", "utf-8")
-
-        library.paintFlags = library.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-        nss.paintFlags = nss.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-
-        nss.setOnClickListener{
-            nAct.supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentLayout, NSSFragment())
-                .addToBackStack(null)
-                .commitAllowingStateLoss()
-        }
-
-        library.setOnClickListener{
-            nAct.supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentLayout, LibraryFragment())
-                .addToBackStack(null)
-                .commitAllowingStateLoss()
-        }
-
-
 
     }
 

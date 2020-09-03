@@ -23,6 +23,10 @@
             android:title="Contact us" />
 
         <item
+            android:id="@+id/menu_other"
+            android:title="Other" />
+
+        <item
             android:id="@+id/menu_setting"
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="Setting" />
